@@ -1,0 +1,57 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+#top {
+	width: 100%;
+	height: 110px;
+}
+
+#topIntro {
+	width: 100%;
+	height: 80px;
+	background: url("img/top_bg.jpg") repeat-x;
+}
+
+#img {
+	display: block;
+	position: relative;
+	left: 10px;
+	top: 7px;
+	float: left;
+}
+
+#user_operator {
+	font-size: 12px;
+	position: relative;
+	float: right;
+	top: 25px;
+	margin-right: 10px;
+	color: #7b9eba;
+}
+
+#user_operator a:link, #user_operator a:visited {
+	color: #fff;
+	text-decoration: none;
+}
+
+#user_operator a:hover {
+	text-decoration: underline;
+	color: #ff0;
+}
+
+#remind {
+	height: 28px;
+	background: url("img/top_remind_bg.jpg") repeat-x;
+	border-top: 1px solid #fff;
+	border-botton: 1px solid #737373;
+}
+
+#remind span {
+	font-size: 12px;
+	color: #233d4e;
+	position: relative;
+	top: 6px;
+	left: 15px;
+}

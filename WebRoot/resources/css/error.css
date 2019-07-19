@@ -1,0 +1,21 @@
+* {
+	margin: 0xp;
+	padding: 0px;
+	font-size: 12px;
+}
+
+#error, #message, #upPage {
+	position: relative;
+	top: 200px;
+	text-align: center;
+}
+
+#error span {
+	font-weight: bold;
+}
+
+#errorContainer {
+	color: #f00;
+	padding: 0px 4px;
+	font-weight: bold;
+}

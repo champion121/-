@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
+
+
+	<!-- 扫描包实例化 -->
+	<context:component-scan base-package="com" />
+	<!-- 使用注解的方式进行mvc映射 -->
+	<mvc:annotation-driven />
+
+	<!-- 指定全局的静态资源文件目录 需要再webroot下 创建指定文件夹 -->
+	<mvc:resources location="/resources/" mapping="/resources/**" />
+
+	<!-- 引入JDBC配置文件 -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
+
+	<!-- 数据库连接池,使用DBCP -->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="${driverClassName}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${user}" />
+		<property name="password" value="${password}" />
+	</bean>
+<!-- SqlSessionFactory配置 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 引入MyBatis的配置文件 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+     </bean>
+
+	<!-- 指定视图解析器 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 前缀 : 是指 我们的页面保存的路径位置 -->
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<!-- 文件的后缀类型 -->
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+
+	<!-- 全局异常处理 -->
+	<bean
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<!-- 捕捉到UserException之后,就会在这里被拦截,然后分发到error页面 -->
+				<prop key="model.UserException">error</prop>
+			</props>
+		</property>
+	</bean>
+
+
+</beans>		
+	

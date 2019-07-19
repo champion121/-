@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tledu.zrz.dao.IClassesDao">
+
+	<!-- 因为数据库的列名是class_name 而 实体类中的变量是 className 所以不会自动映射 需要手动指定 -->
+	<select id="load" parameterType="int" resultMap="ClassesMap">
+		select * from
+		t_classes where id = #{id}
+	</select>
+
+	<resultMap type="Classes" id="ClassesMap" autoMapping="true">
+		<result column="class_name" property="className" />
+	</resultMap>
+
+	<select id="list" resultMap="ClassesMap">
+		select * from t_classes order by id
+		asc
+	</select>
+
+	<update id="update" parameterType="Classes">
+		update t_classes set
+		class_name = #{className} , come_time = #{come_time} where id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from t_classes where id
+		= #{id}
+	</delete>
+	<insert id="add" parameterType="Classes">
+		insert into t_classes(class_name
+		, come_time) values (#{className},#{come_time})
+	</insert>
+
+
+	<select id="generateTree" resultMap="TreeModelMap">
+		select id,class_name from
+		t_classes order by id asc
+	</select>
+
+	<resultMap type="TreeModel" id="TreeModelMap">
+		<id column="id" property="id" />
+		<result column="class_name" property="name" />
+	</resultMap>
+	
+</mapper>

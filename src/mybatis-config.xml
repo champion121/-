@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- 设置类型别名, 原本需要写全名的,现在就只需要写别名,比如返回值类型 -->
+	<typeAliases>
+		<!-- 对包下所有类设置别名,别名就是类型(首字母小写或者大写都行) -->
+		<package name="com/tledu/zrz/model" />
+	</typeAliases>
+
+<mappers>
+	<mapper resource="com/tledu/zrz/mapper/Classes.xml" />
+	<mapper resource="com/tledu/zrz/mapper/Dept.xml" />
+	<mapper resource="com/tledu/zrz/mapper/Student.xml" />
+	<mapper resource="com/tledu/zrz/mapper/Teacher.xml" />
+	<mapper resource="com/tledu/zrz/mapper/User.xml" />
+</mappers>
+</configuration>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tledu.zrz.dao.ITeacherDao">
+
+	<!-- 因为数据库的列名是class_name 而 实体类中的变量是 className 所以不会自动映射 需要手动指定 -->
+	<select id="load" parameterType="int" resultMap="TeacherMap">
+		select * from
+		t_teacher t inner join t_dept d on
+		d.id = t.dept_id where t.id = #{id}
+	</select>
+
+	<resultMap type="Teacher" id="TeacherMap" autoMapping="true">
+		<id column="id" property="id" />
+		<association property="dept" column="dept_id" javaType="Department"
+			resultMap="deptMap"></association>
+
+	</resultMap>
+	<resultMap type="Department" id="deptMap" autoMapping="true">
+		<id column="dept_id" property="id" />
+	</resultMap>
+
+
+
+	<select id="list" resultMap="TeacherMap">
+		select * from t_teacher t inner join
+		t_dept d on d.id = t.dept_id order by
+		t.id asc
+
+	</select>
+
+	<update id="update" parameterType="Teacher">
+		update t_teacher set come_time
+		= #{come_time} , email = #{email} , phone = #{phone} , salary =
+		#{salary} , sex = #{sex} , teacher_name = #{teacher_name}
+		, dept_id =
+		#{dept.id} where id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from t_teacher where id
+		= #{id}
+	</delete>
+	<insert id="add" parameterType="Teacher">
+		insert into
+		t_teacher(come_time,email,phone,salary,sex,teacher_name,dept_id)
+		values
+		(#{come_time},#{email},#{phone},#{salary},#{sex},#{teacher_name},#{dept.id})
+	</insert>
+
+
+	<select id="listByDeptId" resultType="Teacher">
+		select id,teacher_name from
+		t_teacher where dept_id = #{id}
+	</select>
+
+
+	<select id="generateTreeDept" resultMap="TreeModelDeptMap">
+		select id , type from t_dept order by id asc
+	</select>
+	<resultMap type="TreeModel" id="TreeModelDeptMap">
+		<id column="id" property="id" />
+		<result column="type" property="name" />
+	</resultMap>
+
+	<select id="generateTreeTeacher" resultMap="TreeModelTeacherMap">
+		select id , teacher_name ,dept_id from t_teacher order by id asc
+	</select>
+
+	<resultMap type="TreeModel" id="TreeModelTeacherMap">
+		<id column="id" property="id" />
+		<result column="teacher_name" property="name" />
+		<result column="dept_id" property="pid" />
+	</resultMap>
+</mapper>

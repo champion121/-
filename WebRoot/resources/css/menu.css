@@ -1,0 +1,58 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+#left {
+	/* 	border: 1px solid red; */
+	width: 164px;
+	font-size: 12px;
+}
+
+ul h3.navTitle {
+	background: url("img/nav_title_bg.jpg") repeat-x;
+	border-top: 1px solid #7da2bf;
+	border-bottom: 1px solid #1d486a;
+	color: #fff;
+	font-size: 12px;
+	/* 设置文本粗细为正常展示 */
+	font-weight: normal;
+	cursor: pointer;
+	height: 28px;
+}
+
+ul span.navTilteTxt {
+	position: relative;
+	left: 20px;
+	top: 7px;
+	background: url(img/nav_title_icon.jpg) no-repeat;
+	padding-left: 20px;
+}
+
+ul.navSelected span.navTilteTxt {
+	position: relative;
+	left: 20px;
+	top: 7px;
+	background: url(img/nav_title_icon_selected.jpg) no-repeat;
+	padding-left: 20px;
+}
+
+ul li.navChild {
+	margin: 8px 0px;
+	margin-left: 20px;
+	list-style: none;
+	background: url("img/nav_child_icon.jpg") no-repeat;
+	background-position: 0 50%;
+	display: none;
+}
+
+ul li.navChild  a:link, ul li.navChild  a:visited {
+	margin-left: 20px;
+	text-decoration: none;
+	color: #4d5255;
+}
+
+ul li.navChild  a:hover {
+	text-decoration: underline;
+	color: red;
+}

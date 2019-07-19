@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tledu.zrz.dao.IStudentDao">
+
+	<!-- 因为数据库的列名是class_name 而 实体类中的变量是 className 所以不会自动映射 需要手动指定 -->
+	<select id="load" parameterType="int" resultMap="StudentMap">
+		select * from
+		t_student s
+		inner join t_teacher t on t.id=s.teacher_id inner join
+		t_classes c on
+		c.id=s.classes_id where s.id = #{id}
+	</select>
+
+	<resultMap type="Student" id="StudentMap" autoMapping="true">
+		<id column="id" property="id" />
+		<association property="teacher" column="teacher_id"
+			javaType="Teacher" resultMap="TeacherMap"></association>
+		<association property="classes" column="classes_id"
+			javaType="Classes" resultMap="ClassesMap"></association>
+	</resultMap>
+	<resultMap type="Teacher" id="TeacherMap" autoMapping="true">
+		<id column="teacher_id" property="id" />
+	</resultMap>
+	<resultMap type="Classes" id="ClassesMap" autoMapping="true">
+		<id column="classes_id" property="id" />
+		<result column="class_name" property="className" />
+	</resultMap>
+
+
+	<select id="list" parameterType="map" resultMap="StudentMap">
+		select * from
+		t_student s inner join t_teacher t on t.id=s.teacher_id
+		inner join
+		t_classes c on c.id=s.classes_id where 1=1
+
+		<if test="searchTitle != null">
+			and s.stu_name like  #{searchTitle}
+		</if>
+		<if test="classesId != null">
+			and s.classes_id = #{classesId}
+		</if>
+		<if test="teacherId != null">
+			and s.teacherId = #{teacherId}
+		</if>
+		order by s.id asc
+	</select>
+
+	<update id="update" parameterType="Student">
+		update t_student set come_time
+		= #{come_time} , email = #{email} , grades = #{grades} , major
+		=#{major} , phone = #{phone}, qq=#{qq} , school = #{school} , sex =
+		#{sex} , stu_name =#{stu_name} ,classes_id = #{classes.id} ,
+		teacher_id = #{teacher.id} where id = #{id}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from t_student where id
+		= #{id}
+	</delete>
+	<insert id="add" parameterType="Student">
+		insert into
+		t_student(come_time,email,grades,major,phone,qq,school,sex,stu_name,classes_id,teacher_id)
+		values
+		(#{come_time},#{email},#{grades},#{major},#{phone},#{qq},#{school},#{sex},#{stu_name},#{classes.id},#{teacher.id})
+	</insert>
+
+
+	<select id="ListByClassId" resultType="Student">
+		select id,stu_name from
+		t_student where classes_id = #{id}
+	</select>
+
+</mapper>

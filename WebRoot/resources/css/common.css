@@ -1,0 +1,102 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+h3.admin_link_bar  div {
+	position: relative;
+	top: 2px;
+	left: 2px;
+	width: 100%;
+	background: #336d9b;
+	text-align: right;
+	float: right;
+	margin-bottom: -7px;
+	font-weight: normal;
+	font-size: 15px;
+	height: 30px;
+}
+
+h3.admin_link_bar  div  span {
+	background: #004080;
+	margin-right: 5px;
+	line-height: 30px;
+	padding: 2px;
+	border-radius: 5px;
+}
+
+h3.admin_link_bar  div  span a {margin 0 5px;
+	font-size: 12px;
+}
+
+a.admin_link:link, a.admin_link:visited {
+	color: #eeeeee;
+	text-decoration: none;
+}
+
+a.admin_link:hover {
+	color: #ff0;
+	text-decoration: underline;
+}
+
+#content table {
+	margin-top: 10px;
+	margin-left: 2px;
+	font-size: 12px;
+	border-top: 1px solid #999;
+	border-left: 1px solid #999;
+	float: left;
+	padding: 0px;
+}
+
+#content table tr td {
+	padding: 6px;
+	padding-right: 0px;
+	border-right: 1px solid #999;
+	border-bottom: 1px solid #999;
+}
+
+#content table thead td {
+	background: #336d9b;
+	color: #fff;
+	text-align: center;
+	margin: 0px;
+}
+
+#content table  thead td.title {
+	text-align: left;
+}
+
+a.list_op:link, a.list_op:visited {
+	background: #921;
+	padding: 2px 4px;
+	text-decoration: none;
+	color: #fff;
+	margin-right:1px;
+	
+}
+
+a.list_op:hover {
+	background: #971;
+}
+
+a.list_link:link, a.list_link:visited {
+	color: #932;
+	text-decoration: none;
+}
+
+a.list_link:hover {
+	color: #239;
+	text-decoration: underline;
+}
+
+td.leftTd{
+	text-align:left;
+}
+td.rightTd{
+	text-align:right;
+	width:40%;
+}
+td.centerTd{
+	text-align:center;
+}
